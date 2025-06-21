@@ -59,10 +59,27 @@ app.get('/api/inventory', authenticate, async (req, res) => {
 });
 
 app.post('/api/inventory', authenticate, async (req, res) => {
-  const { name, quantity } = req.body;
+  const { sku, description, icon_url, quantity } = req.body;
   try {
-    await pool.query('INSERT INTO inventory (name, quantity) VALUES (?, ?)', [name, quantity]);
+    await pool.query(
+      'INSERT INTO inventory (sku, description, icon_url, quantity) VALUES (?, ?, ?, ?)',
+      [sku, description, icon_url, quantity]
+    );
     res.status(201).json({ message: 'Item created' });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.put('/api/inventory/:id', authenticate, async (req, res) => {
+  const { id } = req.params;
+  const { sku, description, icon_url, quantity } = req.body;
+  try {
+    await pool.query(
+      'UPDATE inventory SET sku = ?, description = ?, icon_url = ?, quantity = ? WHERE id = ?',
+      [sku, description, icon_url, quantity, id]
+    );
+    res.json({ message: 'Item updated' });
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
   }

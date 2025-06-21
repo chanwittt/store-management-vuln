@@ -9,9 +9,9 @@ INSERT INTO users (username, password_hash, role, employee_id) VALUES
 ('cashier', '$2a$10$mdD4xqVcraHoABhgziHpfuAMDSvGkoxMZj2WQmVHra6k2sC.coI7i', 'staff', 2);
 
 -- Sample data for inventory
-INSERT INTO inventory (name, quantity) VALUES
-('Widget', 50),
-('Gadget', 100);
+INSERT INTO inventory (sku, description, icon_url, quantity) VALUES
+('WID123', 'Widget', NULL, 50),
+('GAD456', 'Gadget', NULL, 100);
 
 -- Sample data for promotions
 INSERT INTO promotions (title, discount) VALUES
