@@ -12,8 +12,8 @@ INSERT INTO employees (employee_code, name, position, phone, email, address, tha
 ('EMP010', 'Siriporn Mangmee', 'Designer', '0801234321', 'siriporn.mangmee@example.com', '33/9 Siwalee Village, Chiang Mai', '0123456789012', 'T-1011223344');
 -- Sample data for users
 INSERT INTO users (username, password_hash, role, employee_id) VALUES
-('admin', '$2a$10$8rRy8x.f2ivp/kvld8WKBOGKdcZFh/H185Q2ieu.XGSBgKkpiDB7i', 'manager', 1),
-('cashier', '$2a$10$mdD4xqVcraHoABhgziHpfuAMDSvGkoxMZj2WQmVHra6k2sC.coI7i', 'staff', 2);
+('admin', '$2a$10$uQlS29j6Za5PVe3fgU9ZWOZFDHLPoSMuO1o14yg5uh8i58YPqi056', 'manager', 1),
+('cashier', '$2a$10$B8ZKx8Wo05lEZhITiAOhO.5gao.tUeGs8rRt7F/XWbyoQZjrr7clS', 'staff', 2);
 
 -- Sample data for inventory
 INSERT INTO inventory (sku, description, icon_url, quantity, cost_price, sale_price) VALUES
