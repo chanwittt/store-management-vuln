@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // user creation
-app.post('/api/users', authenticate, async (req, res) => {
+app.post('/api/users', async (req, res) => {
   const { username, password, role, employee_id } = req.body;
   try {
     const hash = await bcrypt.hash(password, 10);
