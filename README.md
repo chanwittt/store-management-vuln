@@ -54,6 +54,8 @@ The web application will be available at
 `http://localhost:3000`. The MySQL instance will continue to listen on
 `localhost:3306`. The `2_mock_data.sql` file is automatically executed so the
 containers start with demo content.
+The compose file also forces the MySQL server to use the `utf8mb4` character set
+so Thai text is stored and retrieved correctly.
 
 If you want to reload the sample data, be sure to remove the database volume
 first:
