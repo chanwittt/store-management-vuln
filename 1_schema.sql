@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS employees (
   email VARCHAR(255),
   address VARCHAR(255),
   thai_id VARCHAR(20),
-  ssn VARCHAR(20)
+  ssn VARCHAR(20),
+  role VARCHAR(50) NOT NULL DEFAULT 'staff'
 );
 
 CREATE TABLE IF NOT EXISTS users (

@@ -1,6 +1,6 @@
 -- Sample data for employees
-INSERT INTO employees (employee_code, name, phone, email, address, thai_id, ssn) VALUES
-('EMP001', 'สมชาย ใจดี', '0812345678', 'somchai.jaidee@example.com', '99/1 ถ.สุขุมวิท แขวงบางนา กรุงเทพฯ', '1234567890123', 'T-1122334455'),
+INSERT INTO employees (employee_code, name, phone, email, address, thai_id, ssn, role) VALUES
+('EMP001', 'สมชาย ใจดี', '0812345678', 'somchai.jaidee@example.com', '99/1 ถ.สุขุมวิท แขวงบางนา กรุงเทพฯ', '1234567890123', 'T-1122334455', 'manager'),
 ('EMP002', 'อรทัย สวยงาม', '0898765432', 'ornthai.suayngam@example.com', '8/5 หมู่บ้านสวนสวย นนทบุรี', '2345678901234', 'T-2233445566'),
 ('EMP003', 'ชาญณรงค์ ทองแท้', '0867890123', 'channarong.thongtae@example.com', '15 ซ.ลาดพร้าว 80 กรุงเทพฯ', '3456789012345', 'T-3344556677'),
 ('EMP004', 'พรพิมล รัตนานนท์', '0923456789', 'pornpimon.rattanannon@example.com', '12/9 ถ.เจริญกรุง กรุงเทพฯ', '4567890123456', 'T-4455667788'),
