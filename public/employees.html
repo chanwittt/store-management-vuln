@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Employees</title>
+</head>
+<body class="p-6">
+  <h1 class="text-xl mb-4">Employees</h1>
+  <table class="mb-4 w-full" id="table"></table>
+  <input id="username" class="border p-2 mr-2" placeholder="Username" />
+  <input id="password" type="password" class="border p-2 mr-2" placeholder="Password" />
+  <input id="role" class="border p-2 mr-2" placeholder="Role" />
+  <button id="add" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token) location.href = '/login.html';
+
+    async function load() {
+      const res = await fetch('/api/employees', { headers: { Authorization: 'Bearer ' + token } });
+      const data = await res.json();
+      const table = document.getElementById('table');
+      table.innerHTML = '<tr><th>Username</th><th>Role</th></tr>' +
+        data.map(i => `<tr><td>${i.username}</td><td>${i.role}</td></tr>`).join('');
+    }
+    load();
+
+    document.getElementById('add').onclick = async () => {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const role = document.getElementById('role').value;
+      await fetch('/api/employees', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+        body: JSON.stringify({ username, password, role })
+      });
+      load();
+    };
+  </script>
+</body>
+</html>
