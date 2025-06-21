@@ -4,16 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Customers</title>
 </head>
-<body class="p-6">
-  <h1 class="text-xl mb-4">Customers</h1>
-  <nav class="space-x-4 mb-6">
-    <a href="inventory.html" class="text-blue-500">Inventory</a>
-    <a href="promotions.html" class="text-blue-500">Promotions</a>
-    <a href="employees.html" class="text-blue-500">Employees</a>
-    <a href="customers.html" class="text-blue-500">Customers</a>
+<body class="flex min-h-screen bg-gray-50">
+  <nav class="bg-red-500 text-white w-48 p-4 space-y-2 min-h-screen">
+    <a href="index.html" class="block py-2 px-2 hover:bg-red-600 rounded">Dashboard</a>
+    <a href="inventory.html" class="block py-2 px-2 hover:bg-red-600 rounded">Inventory</a>
+    <a href="promotions.html" class="block py-2 px-2 hover:bg-red-600 rounded">Promotions</a>
+    <a href="employees.html" class="block py-2 px-2 hover:bg-red-600 rounded">Employees</a>
+    <a href="customers.html" class="block py-2 px-2 hover:bg-red-600 rounded">Customers</a>
   </nav>
+  <div class="flex-1 p-6">
+    <h1 class="text-xl mb-4">Customers</h1>
   <table class="mb-4 w-full" id="table"></table>
   <input id="name" class="border p-2 mr-2" placeholder="Name" />
   <input id="email" class="border p-2 mr-2" placeholder="Email" />
@@ -42,5 +43,6 @@
       load();
     };
   </script>
+  </div>
 </body>
 </html>
