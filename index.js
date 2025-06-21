@@ -59,11 +59,11 @@ app.get('/api/inventory', authenticate, async (req, res) => {
 });
 
 app.post('/api/inventory', authenticate, async (req, res) => {
-  const { sku, description, icon_url, quantity } = req.body;
+  const { sku, description, icon_url, quantity, cost_price, sale_price } = req.body;
   try {
     await pool.query(
-      'INSERT INTO inventory (sku, description, icon_url, quantity) VALUES (?, ?, ?, ?)',
-      [sku, description, icon_url, quantity]
+      'INSERT INTO inventory (sku, description, icon_url, quantity, cost_price, sale_price) VALUES (?, ?, ?, ?, ?, ?)',
+      [sku, description, icon_url, quantity, cost_price, sale_price]
     );
     res.status(201).json({ message: 'Item created' });
   } catch (err) {
@@ -73,11 +73,11 @@ app.post('/api/inventory', authenticate, async (req, res) => {
 
 app.put('/api/inventory/:id', authenticate, async (req, res) => {
   const { id } = req.params;
-  const { sku, description, icon_url, quantity } = req.body;
+  const { sku, description, icon_url, quantity, cost_price, sale_price } = req.body;
   try {
     await pool.query(
-      'UPDATE inventory SET sku = ?, description = ?, icon_url = ?, quantity = ? WHERE id = ?',
-      [sku, description, icon_url, quantity, id]
+      'UPDATE inventory SET sku = ?, description = ?, icon_url = ?, quantity = ?, cost_price = ?, sale_price = ? WHERE id = ?',
+      [sku, description, icon_url, quantity, cost_price, sale_price, id]
     );
     res.json({ message: 'Item updated' });
   } catch (err) {
