@@ -118,11 +118,11 @@ app.get('/api/employees', authenticate, async (req, res) => {
 });
 
 app.post('/api/employees', authenticate, async (req, res) => {
-  const { name, username, password, role } = req.body;
+  const { name, position, username, password, role } = req.body;
   const conn = await pool.getConnection();
   try {
     await conn.beginTransaction();
-    const [empResult] = await conn.query('INSERT INTO employees (name) VALUES (?)', [name]);
+    const [empResult] = await conn.query('INSERT INTO employees (name, position) VALUES (?, ?)', [name, position]);
     const empId = empResult.insertId;
     const hash = await bcrypt.hash(password, 10);
     await conn.query(
