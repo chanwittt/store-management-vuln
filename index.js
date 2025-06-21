@@ -8,6 +8,21 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
+// user creation
+app.post('/api/users', authenticate, async (req, res) => {
+  const { username, password, role, employee_id } = req.body;
+  try {
+    const hash = await bcrypt.hash(password, 10);
+    await pool.query(
+      'INSERT INTO users (username, password_hash, role, employee_id) VALUES (?, ?, ?, ?)',
+      [username, hash, role, employee_id || null]
+    );
+    res.status(201).json({ message: 'User created' });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 // user login
 app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
