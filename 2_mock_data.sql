@@ -44,5 +44,13 @@ INSERT INTO promotions (title, discount, discount_code) VALUES
 
 -- Sample data for customers
 INSERT INTO customers (name, email, phone, address, passport_id, credit_card) VALUES
-('John Doe', 'john@example.com', '0891112233', '789 Market St, Bangkok', 'AA1234567', '4111111111111111'),
-('Jane Smith', 'jane@example.com', '0862223344', '1010 River Rd, Bangkok', 'BB7654321', '4222222222222');
+('John Smith',      'john.smith@example.com',      '0811111111', '101 Main St., Bangkok',        'PA1234567', '4111111111111111'),  -- Visa
+('Sakura Tanaka',   'sakura.tanaka@example.com',   '0822222222', '202 Sakura Rd., Tokyo',         'JP9876543', '5500000000000004'),  -- MasterCard
+('Lisa Chan',       'lisa.chan@example.com',       '0833333333', '303 Orchard Rd., Singapore',    'SG1234987', '340000000000009'),   -- Amex
+('David Miller',    'david.miller@example.com',    '0844444444', '404 Queen St., Sydney',         'AU5432198', '6011000000000004'),  -- Discover
+('Amelia Brown',    'amelia.brown@example.com',    '0855555555', '505 King Rd., London',          'GB8765432', '3530111333300000'),  -- JCB
+('Thanawat Phong',  'thanawat.phong@example.com',  '0866666666', '606 Sukhumvit, Bangkok',        'TH9988776', '4111222233334444'),  -- Visa
+('Marie Dubois',    'marie.dubois@example.com',    '0877777777', '707 Rue de Paris, Paris',       'FR1122334', '5555555555554444'),  -- MasterCard
+('Daniel Kim',      'daniel.kim@example.com',      '0888888888', '808 Gangnam Ave., Seoul',       'KR3344556', '378282246310005'),   -- Amex
+('Isabella Rossi',  'isabella.rossi@example.com',  '0899999999', '909 Via Roma, Rome',            'IT4455667', '6011111111111117'),  -- Discover
+('Nguyen Minh',     'nguyen.minh@example.com',     '0801234567', '111 Le Loi, Ho Chi Minh City',  'VN2233445', '3530555555555555');  -- JCB
