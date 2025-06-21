@@ -22,10 +22,18 @@ INSERT INTO inventory (sku, description, icon_url, quantity, cost_price, sale_pr
 ('ATY010', 'Dunny Azteca Series 2', '/images/blank-icon.png', 7, 2200.00, 3500.00);
 
 -- Sample data for promotions
-INSERT INTO promotions (title, discount) VALUES
-('Summer Sale', '10% off'),
-('Holiday Special', '15% off'),
-('Clearance', '20% off');
+INSERT INTO promotions (title, discount, discount_code) VALUES
+('Summer Sale', '10% off','SUMMER10'),
+('Winter Clearance', '20% off', 'WINTER20'),
+('New Year Special', '25% off', 'NEWYEAR25'),
+('Back to School', '15% off', 'BACK2SCHOOL'),
+('Black Friday', '30% off', 'BLACKFRIDAY'),
+('Cyber Monday', '20% off', 'CYBERMONDAY'),
+('Valentine\'s Day', '10% off', 'VALENTINE10'),
+('Easter Sale', '15% off', 'EASTER15'),
+('Halloween Special', '20% off', 'HALLOWEEN20'),
+('Thanksgiving', '10% off', 'THANKSGIVING10'),
+('Christmas Sale', '25% off', 'CHRISTMAS25');
 
 -- Sample data for customers
 INSERT INTO customers (name, email, phone, address, thai_id, credit_card) VALUES
