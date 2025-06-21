@@ -10,8 +10,8 @@ INSERT INTO users (username, password_hash, role, employee_id) VALUES
 
 -- Sample data for inventory
 INSERT INTO inventory (sku, description, icon_url, quantity) VALUES
-('WID123', 'Widget', NULL, 50),
-('GAD456', 'Gadget', NULL, 100);
+('WID123', 'Widget', '/images/blank-icon.png', 50),
+('GAD456', 'Gadget', '/images/blank-icon.png', 100);
 
 -- Sample data for promotions
 INSERT INTO promotions (title, discount) VALUES
