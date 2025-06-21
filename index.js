@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 app.use(express.static('public'));
 
 // user creation
-app.post('/api/users', async (req, res) => {
+app.post('/api/users', authenticate, async (req, res) => {
   const { username, password, role, employee_id } = req.body;
   try {
     const hash = await bcrypt.hash(password, 10);
@@ -106,7 +106,7 @@ app.post('/api/promotions', authenticate, async (req, res) => {
 });
 
 // employee management
-app.get('/api/employees', authenticate, async (req, res) => {
+app.get('/api/employees', async (req, res) => {
   try {
     const [rows] = await pool.query(
       'SELECT e.*, u.username, u.role FROM employees e LEFT JOIN users u ON e.id = u.employee_id'
