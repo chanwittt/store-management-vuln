@@ -6,12 +6,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Login</title>
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-  <div class="bg-white p-6 rounded shadow-md w-80">
-    <h1 class="text-xl mb-4">Login</h1>
-    <input id="username" class="border p-2 w-full mb-2" placeholder="Username" />
-    <input id="password" type="password" class="border p-2 w-full mb-4" placeholder="Password" />
-    <button id="loginBtn" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Login</button>
+<body class="bg-blue-100 flex items-center justify-center h-screen">
+  <div class="bg-white rounded-lg shadow-md flex w-full max-w-3xl overflow-hidden">
+    <div class="w-1/2 bg-gradient-to-br from-blue-600 to-blue-400 text-white flex items-center justify-center p-8">
+      <h1 class="text-3xl font-bold">Store Management</h1>
+    </div>
+    <div class="w-1/2 p-6">
+      <h2 class="text-xl mb-4">Login</h2>
+      <input id="username" class="border p-2 w-full mb-2" placeholder="Username" />
+      <input id="password" type="password" class="border p-2 w-full mb-4" placeholder="Password" />
+      <button id="loginBtn" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Login</button>
+    </div>
   </div>
   <script>
     document.getElementById('loginBtn').addEventListener('click', async () => {
