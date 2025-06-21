@@ -53,25 +53,21 @@
         '<thead class="bg-gray-100">' +
           '<tr>' +
             '<th class="text-left px-4 py-2">Name</th>' +
-            '<th class="text-left px-4 py-2">Email</th>' +
             '<th class="text-left px-4 py-2">Phone</th>' +
+            '<th class="text-left px-4 py-2">Email</th>' +
             '<th class="text-left px-4 py-2">Address</th>' +
-            '<th class="text-left px-4 py-2">Passport ID</th>' +
-            '<th class="text-left px-4 py-2">Credit Card</th>' +
           '</tr>' +
         '</thead>' +
         '<tbody>' +
           data.map(i =>
             `<tr class="hover:bg-gray-50">` +
               `<td class="border-t px-4 py-2">${i.name}</td>` +
-              `<td class="border-t px-4 py-2">${i.email}</td>` +
               `<td class="border-t px-4 py-2">${i.phone || ''}</td>` +
+              `<td class="border-t px-4 py-2">${i.email}</td>` +
               `<td class="border-t px-4 py-2">${i.address || ''}</td>` +
-              `<td class="border-t px-4 py-2">${i.passport_id || ''}</td>` +
-              `<td class="border-t px-4 py-2">${i.credit_card || ''}</td>` +
             '</tr>'
           ).join('') +
-        '</tbody>';
+        '</tbody>'; 
     }
     load();
 
