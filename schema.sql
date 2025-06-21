@@ -2,7 +2,12 @@ CREATE TABLE IF NOT EXISTS employees (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(255) NOT NULL UNIQUE,
   password_hash VARCHAR(255) NOT NULL,
-  role VARCHAR(50) NOT NULL
+  role VARCHAR(50) NOT NULL,
+  phone VARCHAR(20),
+  email VARCHAR(255),
+  address VARCHAR(255),
+  thai_id VARCHAR(20),
+  ssn VARCHAR(20)
 );
 
 CREATE TABLE IF NOT EXISTS inventory (
@@ -20,5 +25,9 @@ CREATE TABLE IF NOT EXISTS promotions (
 CREATE TABLE IF NOT EXISTS customers (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(20),
+  address VARCHAR(255),
+  thai_id VARCHAR(20),
+  credit_card VARCHAR(20)
 );
