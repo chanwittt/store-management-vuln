@@ -15,10 +15,20 @@
   </nav>
   <div class="flex-1 p-6">
     <h1 class="text-xl mb-4">Customers</h1>
+  <button id="add" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">Add</button>
   <table class="min-w-full mb-4 divide-y divide-gray-200 border border-gray-200 rounded" id="table"></table>
-  <input id="name" class="border p-2 mr-2" placeholder="Name" />
-  <input id="email" class="border p-2 mr-2" placeholder="Email" />
-  <button id="add" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
+
+  <div id="popup" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-4 rounded w-80">
+      <h2 class="text-lg mb-2">Customer Details</h2>
+      <input id="name" class="border p-2 mb-2 w-full" placeholder="Name" />
+      <input id="email" class="border p-2 mb-2 w-full" placeholder="Email" />
+      <div class="flex justify-end space-x-2">
+        <button id="cancel" class="bg-gray-300 px-4 py-2 rounded">Cancel</button>
+        <button id="save" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+      </div>
+    </div>
+  </div>
   <script>
     const token = localStorage.getItem('token');
     if (!token) location.href = '/login.html';
@@ -45,7 +55,19 @@
     }
     load();
 
-    document.getElementById('add').onclick = async () => {
+    const popup = document.getElementById('popup');
+
+    document.getElementById('add').onclick = () => {
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      popup.classList.remove('hidden');
+    };
+
+    document.getElementById('cancel').onclick = () => {
+      popup.classList.add('hidden');
+    };
+
+    document.getElementById('save').onclick = async () => {
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       await fetch('/api/customers', {
@@ -53,7 +75,10 @@
         headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
         body: JSON.stringify({ name, email })
       });
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
       load();
+      popup.classList.add('hidden');
     };
   </script>
   </div>
