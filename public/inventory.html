@@ -16,7 +16,7 @@
   </nav>
   <div class="flex-1 p-6">
     <h1 class="text-xl mb-4">Inventory</h1>
-  <table class="mb-4 w-full" id="table"></table>
+  <table class="min-w-full mb-4 divide-y divide-gray-200 border border-gray-200 rounded" id="table"></table>
   <div class="space-x-2 mb-2">
     <input id="sku" class="border p-2" placeholder="SKU" />
     <input id="description" class="border p-2" placeholder="Description" />
@@ -41,13 +41,23 @@
         return;
       }
       const table = document.getElementById('table');
-      table.innerHTML = '<tr><th>Icon</th><th>SKU</th><th>Description</th><th>Qty</th></tr>' +
-        data.map(i => `<tr data-id="${i.id}" class="cursor-pointer">`+
-          `<td><img src="${i.icon_url || ''}" class="w-8 h-8"/></td>`+
-          `<td>${i.sku}</td>`+
-          `<td>${i.description}</td>`+
-          `<td>${i.quantity}</td>`+
-        '</tr>').join('');
+      table.innerHTML =
+        '<thead class="bg-gray-100">' +
+          '<tr>' +
+            '<th class="text-left px-4 py-2">Icon</th>' +
+            '<th class="text-left px-4 py-2">SKU</th>' +
+            '<th class="text-left px-4 py-2">Description</th>' +
+            '<th class="text-left px-4 py-2">Qty</th>' +
+          '</tr>' +
+        '</thead>' +
+        '<tbody>' +
+          data.map(i => `<tr data-id="${i.id}" class="cursor-pointer hover:bg-gray-50">`+
+            `<td class="border-t px-4 py-2"><img src="${i.icon_url || ''}" class="w-8 h-8"/></td>`+
+            `<td class="border-t px-4 py-2">${i.sku}</td>`+
+            `<td class="border-t px-4 py-2">${i.description}</td>`+
+            `<td class="border-t px-4 py-2">${i.quantity}</td>`+
+          '</tr>').join('') +
+        '</tbody>';
       Array.from(table.querySelectorAll('tr[data-id]')).forEach(row => {
         row.onclick = () => {
           const id = row.getAttribute('data-id');

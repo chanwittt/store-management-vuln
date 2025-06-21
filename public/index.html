@@ -28,7 +28,7 @@
     </div>
     <div class="bg-white p-4 rounded shadow md:col-span-2">
       <h2 class="text-xl mb-2">Current Stock</h2>
-      <table class="min-w-full" id="stockTable"></table>
+      <table class="min-w-full divide-y divide-gray-200 border border-gray-200 rounded" id="stockTable"></table>
     </div>
   </div>
   <button id="logout" class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
@@ -63,8 +63,13 @@
       { name: 'Product D', qty: 60 }
     ];
     const table = document.getElementById('stockTable');
-    table.innerHTML = '<tr><th class="text-left p-2">Item</th><th class="text-left p-2">Qty</th></tr>' +
-      stockData.map(i => `<tr><td class="border px-2 py-1">${i.name}</td><td class="border px-2 py-1">${i.qty}</td></tr>`).join('');
+    table.innerHTML =
+      '<thead class="bg-gray-100">' +
+        '<tr><th class="text-left px-4 py-2">Item</th><th class="text-left px-4 py-2">Qty</th></tr>' +
+      '</thead>' +
+      '<tbody>' +
+        stockData.map(i => `<tr class="hover:bg-gray-50"><td class="border-t px-4 py-2">${i.name}</td><td class="border-t px-4 py-2">${i.qty}</td></tr>`).join('') +
+      '</tbody>';
   </script>
   </div>
 </body>
