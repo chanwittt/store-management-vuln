@@ -11,18 +11,22 @@
     <a href="inventory.html" class="block py-2 px-2 hover:bg-blue-600 rounded">Inventory</a>
     <a href="promotions.html" class="block py-2 px-2 hover:bg-blue-600 rounded">Promotions</a>
     <a href="employees.html" class="block py-2 px-2 hover:bg-blue-600 rounded">Employees</a>
-    <a href="customers.html" class="block py-2 px-2 hover:bg-blue-600 rounded">Customers</a>
+    <a href="customers.html" class="block py-2 px-2 hover:bg-blue-600 rounded">Members</a>
   </nav>
   <div class="flex-1 p-6">
-    <h1 class="text-xl mb-4">Customers</h1>
+    <h1 class="text-xl mb-4">Members</h1>
   <button id="add" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">Add</button>
   <table class="min-w-full mb-4 divide-y divide-gray-200 border border-gray-200 rounded" id="table"></table>
 
   <div id="popup" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
     <div class="bg-white p-4 rounded w-80">
-      <h2 class="text-lg mb-2">Customer Details</h2>
+      <h2 class="text-lg mb-2">Member Details</h2>
       <input id="name" class="border p-2 mb-2 w-full" placeholder="Name" />
       <input id="email" class="border p-2 mb-2 w-full" placeholder="Email" />
+      <input id="phone" class="border p-2 mb-2 w-full" placeholder="Phone" />
+      <input id="address" class="border p-2 mb-2 w-full" placeholder="Address" />
+      <input id="passport_id" class="border p-2 mb-2 w-full" placeholder="Passport ID" />
+      <input id="credit_card" class="border p-2 mb-2 w-full" placeholder="Credit Card" />
       <div class="flex justify-end space-x-2">
         <button id="cancel" class="bg-gray-300 px-4 py-2 rounded">Cancel</button>
         <button id="save" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
@@ -47,10 +51,26 @@
       const table = document.getElementById('table');
       table.innerHTML =
         '<thead class="bg-gray-100">' +
-          '<tr><th class="text-left px-4 py-2">Name</th><th class="text-left px-4 py-2">Email</th></tr>' +
+          '<tr>' +
+            '<th class="text-left px-4 py-2">Name</th>' +
+            '<th class="text-left px-4 py-2">Email</th>' +
+            '<th class="text-left px-4 py-2">Phone</th>' +
+            '<th class="text-left px-4 py-2">Address</th>' +
+            '<th class="text-left px-4 py-2">Passport ID</th>' +
+            '<th class="text-left px-4 py-2">Credit Card</th>' +
+          '</tr>' +
         '</thead>' +
         '<tbody>' +
-          data.map(i => `<tr class="hover:bg-gray-50"><td class="border-t px-4 py-2">${i.name}</td><td class="border-t px-4 py-2">${i.email}</td></tr>`).join('') +
+          data.map(i =>
+            `<tr class="hover:bg-gray-50">` +
+              `<td class="border-t px-4 py-2">${i.name}</td>` +
+              `<td class="border-t px-4 py-2">${i.email}</td>` +
+              `<td class="border-t px-4 py-2">${i.phone || ''}</td>` +
+              `<td class="border-t px-4 py-2">${i.address || ''}</td>` +
+              `<td class="border-t px-4 py-2">${i.passport_id || ''}</td>` +
+              `<td class="border-t px-4 py-2">${i.credit_card || ''}</td>` +
+            '</tr>'
+          ).join('') +
         '</tbody>';
     }
     load();
@@ -60,6 +80,10 @@
     document.getElementById('add').onclick = () => {
       document.getElementById('name').value = '';
       document.getElementById('email').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('address').value = '';
+      document.getElementById('passport_id').value = '';
+      document.getElementById('credit_card').value = '';
       popup.classList.remove('hidden');
     };
 
@@ -70,13 +94,21 @@
     document.getElementById('save').onclick = async () => {
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const passport_id = document.getElementById('passport_id').value;
+      const credit_card = document.getElementById('credit_card').value;
       await fetch('/api/customers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
-        body: JSON.stringify({ name, email })
+        body: JSON.stringify({ name, email, phone, address, passport_id, credit_card })
       });
       document.getElementById('name').value = '';
       document.getElementById('email').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('address').value = '';
+      document.getElementById('passport_id').value = '';
+      document.getElementById('credit_card').value = '';
       load();
       popup.classList.add('hidden');
     };

@@ -43,6 +43,6 @@ INSERT INTO promotions (title, discount, discount_code) VALUES
 ('Christmas Sale', '25% off', 'CHRISTMAS25');
 
 -- Sample data for customers
-INSERT INTO customers (name, email, phone, address, thai_id, credit_card) VALUES
-('John Doe', 'john@example.com', '0891112233', '789 Market St, Bangkok', '1103700123456', '4111111111111111'),
-('Jane Smith', 'jane@example.com', '0862223344', '1010 River Rd, Bangkok', '1103700654321', '4222222222222');
+INSERT INTO customers (name, email, phone, address, passport_id, credit_card) VALUES
+('John Doe', 'john@example.com', '0891112233', '789 Market St, Bangkok', 'AA1234567', '4111111111111111'),
+('Jane Smith', 'jane@example.com', '0862223344', '1010 River Rd, Bangkok', 'BB7654321', '4222222222222');
