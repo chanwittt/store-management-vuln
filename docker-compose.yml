@@ -9,8 +9,8 @@ services:
       MYSQL_PASSWORD: store_pass
     volumes:
       - db-data:/var/lib/mysql
-      - ./1_schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
-      - ./2_mock_data.sql:/docker-entrypoint-initdb.d/mock_data.sql:ro
+      - ./1_schema.sql:/docker-entrypoint-initdb.d/1_schema.sql:ro
+      - ./2_mock_data.sql:/docker-entrypoint-initdb.d/2_mock_data.sql:ro
     ports:
       - "3306:3306"
   backend:
