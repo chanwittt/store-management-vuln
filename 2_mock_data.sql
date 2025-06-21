@@ -10,8 +10,16 @@ INSERT INTO users (username, password_hash, role, employee_id) VALUES
 
 -- Sample data for inventory
 INSERT INTO inventory (sku, description, icon_url, quantity, cost_price, sale_price) VALUES
-('WID123', 'Widget', '/images/blank-icon.png', 50, 10.00, 15.00),
-('GAD456', 'Gadget', '/images/blank-icon.png', 100, 20.00, 30.00);
+('ATY001', 'Be@rbrick Andy Warhol 1000%', '/images/blank-icon.png', 5, 12000.00, 18000.00),
+('ATY002', 'Kaws Companion Open Edition', '/images/blank-icon.png', 8, 8500.00, 12000.00),
+('ATY003', 'Mighty Jaxx XXRAY Plus Spongebob', '/images/blank-icon.png', 10, 3200.00, 4800.00),
+('ATY004', 'Pop Mart Labubu Sweet Series', '/images/blank-icon.png', 15, 600.00, 990.00),
+('ATY005', 'Instinctoy Monster Fluffy', '/images/blank-icon.png', 3, 7800.00, 9500.00),
+('ATY006', 'Medicom Toy UDF Snoopy', '/images/blank-icon.png', 20, 350.00, 650.00),
+('ATY007', 'Molly Zodiac Series Aries', '/images/blank-icon.png', 9, 1100.00, 1790.00),
+('ATY008', 'Sonny Angel Animal 4 Series', '/images/blank-icon.png', 12, 420.00, 699.00),
+('ATY009', 'Coarse Little Voyagers', '/images/blank-icon.png', 6, 1850.00, 2950.00),
+('ATY010', 'Dunny Azteca Series 2', '/images/blank-icon.png', 7, 2200.00, 3500.00);
 
 -- Sample data for promotions
 INSERT INTO promotions (title, discount) VALUES
