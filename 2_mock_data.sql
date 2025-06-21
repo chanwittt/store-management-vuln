@@ -24,6 +24,7 @@ INSERT INTO inventory (sku, description, icon_url, quantity, cost_price, sale_pr
 -- Sample data for promotions
 INSERT INTO promotions (title, discount) VALUES
 ('Summer Sale', '10% off'),
+('Holiday Special', '15% off'),
 ('Clearance', '20% off');
 
 -- Sample data for customers
