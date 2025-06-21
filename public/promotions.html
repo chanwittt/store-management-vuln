@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Promotions</title>
+</head>
+<body class="p-6">
+  <h1 class="text-xl mb-4">Promotions</h1>
+  <table class="mb-4 w-full" id="table"></table>
+  <input id="title" class="border p-2 mr-2" placeholder="Title" />
+  <input id="discount" class="border p-2 mr-2" placeholder="Discount" />
+  <button id="add" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token) location.href = '/login.html';
+
+    async function load() {
+      const res = await fetch('/api/promotions', { headers: { Authorization: 'Bearer ' + token } });
+      const data = await res.json();
+      const table = document.getElementById('table');
+      table.innerHTML = '<tr><th>Title</th><th>Discount</th></tr>' +
+        data.map(i => `<tr><td>${i.title}</td><td>${i.discount}</td></tr>`).join('');
+    }
+    load();
+
+    document.getElementById('add').onclick = async () => {
+      const title = document.getElementById('title').value;
+      const discount = document.getElementById('discount').value;
+      await fetch('/api/promotions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+        body: JSON.stringify({ title, discount })
+      });
+      load();
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Inventory</title>
+</head>
+<body class="p-6">
+  <h1 class="text-xl mb-4">Inventory</h1>
+  <table class="mb-4 w-full" id="table"></table>
+  <input id="name" class="border p-2 mr-2" placeholder="Item name" />
+  <input id="qty" type="number" class="border p-2 mr-2" placeholder="Quantity" />
+  <button id="add" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token) location.href = '/login.html';
+
+    async function load() {
+      const res = await fetch('/api/inventory', { headers: { Authorization: 'Bearer ' + token } });
+      const data = await res.json();
+      const table = document.getElementById('table');
+      table.innerHTML = '<tr><th>Name</th><th>Quantity</th></tr>' +
+        data.map(i => `<tr><td>${i.name}</td><td>${i.quantity}</td></tr>`).join('');
+    }
+    load();
+
+    document.getElementById('add').onclick = async () => {
+      const name = document.getElementById('name').value;
+      const quantity = document.getElementById('qty').value;
+      await fetch('/api/inventory', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+        body: JSON.stringify({ name, quantity })
+      });
+      load();
+    };
+  </script>
+</body>
+</html>
