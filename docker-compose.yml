@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: store
+      MYSQL_USER: store_user
+      MYSQL_PASSWORD: store_pass
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    ports:
+      - "3306:3306"
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: store_user
+      DB_PASS: store_pass
+      DB_NAME: store
+      JWT_SECRET: secret
+    volumes:
+      - .:/app
+volumes:
+  db-data:
+
