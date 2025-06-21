@@ -27,6 +27,7 @@ services:
       JWT_SECRET: secret
     volumes:
       - .:/app
+      - /app/node_modules
 
   frontend:
     build:
