@@ -1,7 +1,12 @@
 -- Sample data for employees
-INSERT INTO employees (username, password_hash, role, phone, email, address, thai_id, ssn) VALUES
-('admin', '$2a$10$mocksaltedhash', 'manager', '0812345678', 'admin@example.com', '123 Main St, Bangkok', '1103700234567', 'S123456789'),
-('cashier', '$2a$10$mockhash2', 'staff', '0823456789', 'cashier@example.com', '456 Side St, Bangkok', '1103700987654', 'S987654321');
+INSERT INTO employees (name, phone, email, address, thai_id, ssn) VALUES
+('Admin User', '0812345678', 'admin@example.com', '123 Main St, Bangkok', '1103700234567', 'S123456789'),
+('Cashier User', '0823456789', 'cashier@example.com', '456 Side St, Bangkok', '1103700987654', 'S987654321');
+
+-- Sample data for users
+INSERT INTO users (username, password_hash, role, employee_id) VALUES
+('admin', '$2a$10$CwTycUXWue0Thq9StjUM0uJ8b0VkktZ1bgrEBu1z0ID8zlZzgDa3e', 'manager', 1),
+('cashier', '$2a$10$CwTycUXWue0Thq9StjUM0uJ8b0VkktZ1bgrEBu1z0ID8zlZzgDa3e', 'staff', 2);
 
 -- Sample data for inventory
 INSERT INTO inventory (name, quantity) VALUES

@@ -12,7 +12,7 @@ app.use(express.static('public'));
 app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
   try {
-    const [rows] = await pool.query('SELECT * FROM employees WHERE username = ?', [username]);
+    const [rows] = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
     if (rows.length === 0) return res.status(401).json({ error: 'Invalid credentials' });
     const user = rows[0];
     const match = await bcrypt.compare(password, user.password_hash);
@@ -68,7 +68,7 @@ app.post('/api/promotions', authenticate, async (req, res) => {
 // employee management
 app.get('/api/employees', authenticate, async (req, res) => {
   try {
-    const [rows] = await pool.query('SELECT id, username, role FROM employees');
+    const [rows] = await pool.query('SELECT e.id, u.username, u.role FROM employees e LEFT JOIN users u ON e.id = u.employee_id');
     res.json(rows);
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
@@ -77,12 +77,20 @@ app.get('/api/employees', authenticate, async (req, res) => {
 
 app.post('/api/employees', authenticate, async (req, res) => {
   const { username, password, role } = req.body;
+  const conn = await pool.getConnection();
   try {
+    await conn.beginTransaction();
+    const [empResult] = await conn.query('INSERT INTO employees (name) VALUES (?)', [username]);
+    const empId = empResult.insertId;
     const hash = await bcrypt.hash(password, 10);
-    await pool.query('INSERT INTO employees (username, password_hash, role) VALUES (?, ?, ?)', [username, hash, role]);
+    await conn.query('INSERT INTO users (username, password_hash, role, employee_id) VALUES (?, ?, ?, ?)', [username, hash, role, empId]);
+    await conn.commit();
     res.status(201).json({ message: 'Employee created' });
   } catch (err) {
+    await conn.rollback();
     res.status(500).json({ error: 'Server error' });
+  } finally {
+    conn.release();
   }
 });
 

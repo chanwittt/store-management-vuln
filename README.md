@@ -4,7 +4,7 @@ This is a simple demo application consisting of a web frontend, a REST API and a
 
 ## Features
 
-- JWT based authentication
+- JWT based authentication (credentials are stored in a separate `users` table)
 - Inventory and promotion management
 - Employee and customer management
 - Frontend built with HTML and Tailwind CSS
@@ -28,6 +28,16 @@ This is a simple demo application consisting of a web frontend, a REST API and a
    npm start
    ```
 5. Open `http://localhost:3000/login.html` in your browser to use the app.
+
+## Demo Credentials
+
+After loading the sample data you can sign in with the following accounts:
+
+- **Admin**: `admin` / `password`
+- **Cashier**: `cashier` / `password`
+
+Employee details are stored in the `employees` table while user accounts are
+kept in the separate `users` table.
 
 ## Using Docker Compose
 
