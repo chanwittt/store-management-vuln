@@ -150,9 +150,12 @@ app.get('/api/customers', authenticate, async (req, res) => {
 });
 
 app.post('/api/customers', authenticate, async (req, res) => {
-  const { name, email } = req.body;
+  const { name, email, phone, address, passport_id, credit_card } = req.body;
   try {
-    await pool.query('INSERT INTO customers (name, email) VALUES (?, ?)', [name, email]);
+    await pool.query(
+      'INSERT INTO customers (name, email, phone, address, passport_id, credit_card) VALUES (?, ?, ?, ?, ?, ?)',
+      [name, email, phone, address, passport_id, credit_card]
+    );
     res.status(201).json({ message: 'Customer created' });
   } catch (err) {
     res.status(500).json({ error: 'Server error' });

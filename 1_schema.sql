@@ -42,6 +42,6 @@ CREATE TABLE IF NOT EXISTS customers (
   email VARCHAR(255) NOT NULL,
   phone VARCHAR(20),
   address VARCHAR(255),
-  thai_id VARCHAR(20),
+  passport_id VARCHAR(20),
   credit_card VARCHAR(20)
 );
