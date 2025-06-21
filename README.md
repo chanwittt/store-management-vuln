@@ -7,6 +7,7 @@ This is a simple demo application consisting of a web frontend, a REST API and a
 - JWT based authentication (credentials are stored in a separate `users` table)
 - Inventory and promotion management
 - Employee and customer management
+- Employee creation now records a full name separately from the login username
 - Frontend built with HTML and Tailwind CSS
 - Backend built with Express.js
 - MySQL database

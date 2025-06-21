@@ -68,7 +68,9 @@ app.post('/api/promotions', authenticate, async (req, res) => {
 // employee management
 app.get('/api/employees', authenticate, async (req, res) => {
   try {
-    const [rows] = await pool.query('SELECT e.id, u.username, u.role FROM employees e LEFT JOIN users u ON e.id = u.employee_id');
+    const [rows] = await pool.query(
+      'SELECT e.id, e.name, u.username, u.role FROM employees e LEFT JOIN users u ON e.id = u.employee_id'
+    );
     res.json(rows);
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
@@ -76,14 +78,17 @@ app.get('/api/employees', authenticate, async (req, res) => {
 });
 
 app.post('/api/employees', authenticate, async (req, res) => {
-  const { username, password, role } = req.body;
+  const { name, username, password, role } = req.body;
   const conn = await pool.getConnection();
   try {
     await conn.beginTransaction();
-    const [empResult] = await conn.query('INSERT INTO employees (name) VALUES (?)', [username]);
+    const [empResult] = await conn.query('INSERT INTO employees (name) VALUES (?)', [name]);
     const empId = empResult.insertId;
     const hash = await bcrypt.hash(password, 10);
-    await conn.query('INSERT INTO users (username, password_hash, role, employee_id) VALUES (?, ?, ?, ?)', [username, hash, role, empId]);
+    await conn.query(
+      'INSERT INTO users (username, password_hash, role, employee_id) VALUES (?, ?, ?, ?)',
+      [username, hash, role, empId]
+    );
     await conn.commit();
     res.status(201).json({ message: 'Employee created' });
   } catch (err) {

@@ -9,6 +9,7 @@
 <body class="p-6">
   <h1 class="text-xl mb-4">Employees</h1>
   <table class="mb-4 w-full" id="table"></table>
+  <input id="name" class="border p-2 mr-2" placeholder="Name" />
   <input id="username" class="border p-2 mr-2" placeholder="Username" />
   <input id="password" type="password" class="border p-2 mr-2" placeholder="Password" />
   <input id="role" class="border p-2 mr-2" placeholder="Role" />
@@ -21,19 +22,20 @@
       const res = await fetch('/api/employees', { headers: { Authorization: 'Bearer ' + token } });
       const data = await res.json();
       const table = document.getElementById('table');
-      table.innerHTML = '<tr><th>Username</th><th>Role</th></tr>' +
-        data.map(i => `<tr><td>${i.username}</td><td>${i.role}</td></tr>`).join('');
+      table.innerHTML = '<tr><th>Name</th><th>Username</th><th>Role</th></tr>' +
+        data.map(i => `<tr><td>${i.name}</td><td>${i.username}</td><td>${i.role}</td></tr>`).join('');
     }
     load();
 
     document.getElementById('add').onclick = async () => {
+      const name = document.getElementById('name').value;
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
       const role = document.getElementById('role').value;
       await fetch('/api/employees', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
-        body: JSON.stringify({ username, password, role })
+        body: JSON.stringify({ name, username, password, role })
       });
       load();
     };
