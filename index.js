@@ -109,7 +109,7 @@ app.post('/api/promotions', authenticate, async (req, res) => {
 app.get('/api/employees', authenticate, async (req, res) => {
   try {
     const [rows] = await pool.query(
-      'SELECT e.id, e.name, u.username, u.role FROM employees e LEFT JOIN users u ON e.id = u.employee_id'
+      'SELECT e.*, u.username, u.role FROM employees e LEFT JOIN users u ON e.id = u.employee_id'
     );
     res.json(rows);
   } catch (err) {

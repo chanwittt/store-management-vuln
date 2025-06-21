@@ -50,13 +50,13 @@
       table.innerHTML =
         '<thead class="bg-gray-100">' +
           '<tr>' +
+            '<th class="text-left px-4 py-2">Employee Code</th>' +
             '<th class="text-left px-4 py-2">Name</th>' +
-            '<th class="text-left px-4 py-2">Username</th>' +
             '<th class="text-left px-4 py-2">Role</th>' +
           '</tr>' +
         '</thead>' +
         '<tbody>' +
-          data.map(i => `<tr class="hover:bg-gray-50"><td class="border-t px-4 py-2">${i.name}</td><td class="border-t px-4 py-2">${i.username}</td><td class="border-t px-4 py-2">${i.role}</td></tr>`).join('') +
+          data.map(i => `<tr class="hover:bg-gray-50"><td class="border-t px-4 py-2">${i.employee_code || ''}</td><td class="border-t px-4 py-2">${i.name}</td><td class="border-t px-4 py-2">${i.role}</td></tr>`).join('') +
         '</tbody>';
     }
     load();
