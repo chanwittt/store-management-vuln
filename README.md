@@ -26,15 +26,17 @@ This is a simple demo application consisting of a web frontend, a REST API and a
 
 ## Using Docker Compose
 
-You can also run the application along with a MySQL database using Docker
-Compose. Make sure Docker and Docker Compose are installed and then run:
+You can also run the application using Docker Compose. This setup builds
+separate containers for the backend API, the frontend served by Nginx and the
+MySQL database. Make sure Docker and Docker Compose are installed and then run:
 
 ```bash
 docker compose up --build
 ```
 
 The web application will be available at
-`http://localhost:3000/login.html` and the MySQL instance will listen on
+`http://localhost:8080/login.html` and the API will listen on
+`http://localhost:3000`. The MySQL instance will continue to listen on
 `localhost:3306`.
 
 This project is intended for demonstration purposes only.
