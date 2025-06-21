@@ -1,16 +1,15 @@
--- Sample data for employees
+-- Sample data for employees (English version)
 INSERT INTO employees (employee_code, name, position, phone, email, address, thai_id, ssn) VALUES
-('EMP001', 'สมชาย ใจดี', 'ผู้จัดการ', '0812345678', 'somchai.jaidee@example.com', '99/1 ถ.สุขุมวิท แขวงบางนา กรุงเทพฯ', '1234567890123', 'T-1122334455'),
-('EMP002', 'อรทัย สวยงาม', 'แคชเชียร์', '0898765432', 'ornthai.suayngam@example.com', '8/5 หมู่บ้านสวนสวย นนทบุรี', '2345678901234', 'T-2233445566'),
-('EMP003', 'ชาญณรงค์ ทองแท้', 'พนักงานขาย', '0867890123', 'channarong.thongtae@example.com', '15 ซ.ลาดพร้าว 80 กรุงเทพฯ', '3456789012345', 'T-3344556677'),
-('EMP004', 'พรพิมล รัตนานนท์', 'ฝ่ายบัญชี', '0923456789', 'pornpimon.rattanannon@example.com', '12/9 ถ.เจริญกรุง กรุงเทพฯ', '4567890123456', 'T-4455667788'),
-('EMP005', 'ธีรศักดิ์ รุ่งเรือง', 'ฝ่ายไอที', '0951234567', 'teerasak.rungreung@example.com', '45 ถ.ประชาราษฎร์ สมุทรปราการ', '5678901234567', 'T-5566778899'),
-('EMP006', 'สุดารัตน์ จันทร์ฉาย', 'ฝ่ายบุคคล', '0876543210', 'sudarat.janchai@example.com', '59 หมู่ 4 ถ.เพชรเกษม ราชบุรี', '6789012345678', 'T-6677889900'),
-('EMP007', 'วีรยุทธ ชูชาติ', 'พนักงานจัดส่ง', '0843210987', 'weeryut.chuchart@example.com', '888/88 ถ.รามคำแหง กรุงเทพฯ', '7890123456789', 'T-7788990011'),
-('EMP008', 'นฤมล ทองมา', 'คลังสินค้า', '0832109876', 'narumon.thongma@example.com', '22/3 ถ.ประชาชื่น นนทบุรี', '8901234567890', 'T-8899001122'),
-('EMP009', 'เกรียงไกร พิพัฒน์', 'ฝ่ายการตลาด', '0821098765', 'kriangkrai.pipat@example.com', '102/45 ถ.พหลโยธิน กรุงเทพฯ', '9012345678901', 'T-9900112233'),
-('EMP010', 'สิริพร มั่งมี', 'ดีไซเนอร์', '0801234321', 'siriporn.mangmee@example.com', '33/9 หมู่บ้านสีวลี เชียงใหม่', '0123456789012', 'T-1011223344');
-
+('EMP001', 'Somchai Jaidee', 'Store Manager', '0812345678', 'somchai.jaidee@example.com', '99/1 Sukhumvit Rd., Bang Na, Bangkok', '1234567890123', 'T-1122334455'),
+('EMP002', 'Orathai Suayngam', 'Cashier', '0898765432', 'ornthai.suayngam@example.com', '8/5 Suan Suay Village, Nonthaburi', '2345678901234', 'T-2233445566'),
+('EMP003', 'Channarong Thongtae', 'Sales Staff', '0867890123', 'channarong.thongtae@example.com', '15 Ladprao 80, Bangkok', '3456789012345', 'T-3344556677'),
+('EMP004', 'Pornpimon Rattanannon', 'Accountant', '0923456789', 'pornpimon.rattanannon@example.com', '12/9 Charoenkrung Rd., Bangkok', '4567890123456', 'T-4455667788'),
+('EMP005', 'Teerasak Rungreung', 'IT Officer', '0951234567', 'teerasak.rungreung@example.com', '45 Pracharat Rd., Samut Prakan', '5678901234567', 'T-5566778899'),
+('EMP006', 'Sudarat Janchai', 'HR Officer', '0876543210', 'sudarat.janchai@example.com', '59 Moo 4, Phetkasem Rd., Ratchaburi', '6789012345678', 'T-6677889900'),
+('EMP007', 'Weerayut Chuchart', 'Delivery Staff', '0843210987', 'weeryut.chuchart@example.com', '888/88 Ramkhamhaeng Rd., Bangkok', '7890123456789', 'T-7788990011'),
+('EMP008', 'Narumon Thongma', 'Warehouse Staff', '0832109876', 'narumon.thongma@example.com', '22/3 Prachachuen Rd., Nonthaburi', '8901234567890', 'T-8899001122'),
+('EMP009', 'Kriangkrai Pipat', 'Marketing Officer', '0821098765', 'kriangkrai.pipat@example.com', '102/45 Phaholyothin Rd., Bangkok', '9012345678901', 'T-9900112233'),
+('EMP010', 'Siriporn Mangmee', 'Designer', '0801234321', 'siriporn.mangmee@example.com', '33/9 Siwalee Village, Chiang Mai', '0123456789012', 'T-1011223344');
 -- Sample data for users
 INSERT INTO users (username, password_hash, role, employee_id) VALUES
 ('admin', '$2a$10$8rRy8x.f2ivp/kvld8WKBOGKdcZFh/H185Q2ieu.XGSBgKkpiDB7i', 'manager', 1),
