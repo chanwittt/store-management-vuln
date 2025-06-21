@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,20 +14,21 @@
     <a href="customers.html" class="block py-2 px-2 hover:bg-blue-600 rounded">Customers</a>
   </nav>
   <div class="flex-1 p-6">
-    <h1 class="text-xl mb-4">Employees</h1>
-  <button id="add" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">Add</button>
+    <h1 class="text-xl mb-4">พนักงาน</h1>
+  <button id="add" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">เพิ่ม</button>
   <table class="min-w-full mb-4 divide-y divide-gray-200 border border-gray-200 rounded" id="table"></table>
 
   <div id="popup" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
     <div class="bg-white p-4 rounded w-80">
-      <h2 class="text-lg mb-2">Employee Details</h2>
-      <input id="name" class="border p-2 mb-2 w-full" placeholder="Name" />
-      <input id="username" class="border p-2 mb-2 w-full" placeholder="Username" />
-      <input id="password" type="password" class="border p-2 mb-2 w-full" placeholder="Password" />
-      <input id="role" class="border p-2 mb-2 w-full" placeholder="Role" />
+      <h2 class="text-lg mb-2">รายละเอียดพนักงาน</h2>
+      <input id="name" class="border p-2 mb-2 w-full" placeholder="ชื่อ" />
+      <input id="position" class="border p-2 mb-2 w-full" placeholder="ตำแหน่ง" />
+      <input id="username" class="border p-2 mb-2 w-full" placeholder="ชื่อผู้ใช้" />
+      <input id="password" type="password" class="border p-2 mb-2 w-full" placeholder="รหัสผ่าน" />
+      <input id="role" class="border p-2 mb-2 w-full" placeholder="บทบาท" />
       <div class="flex justify-end space-x-2">
-        <button id="cancel" class="bg-gray-300 px-4 py-2 rounded">Cancel</button>
-        <button id="save" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+        <button id="cancel" class="bg-gray-300 px-4 py-2 rounded">ยกเลิก</button>
+        <button id="save" class="bg-blue-500 text-white px-4 py-2 rounded">บันทึก</button>
       </div>
     </div>
   </div>
@@ -50,13 +51,13 @@
       table.innerHTML =
         '<thead class="bg-gray-100">' +
           '<tr>' +
-            '<th class="text-left px-4 py-2">Employee Code</th>' +
-            '<th class="text-left px-4 py-2">Name</th>' +
-            '<th class="text-left px-4 py-2">Role</th>' +
+            '<th class="text-left px-4 py-2">รหัสพนักงาน</th>' +
+            '<th class="text-left px-4 py-2">ชื่อ</th>' +
+            '<th class="text-left px-4 py-2">ตำแหน่ง</th>' +
           '</tr>' +
         '</thead>' +
         '<tbody>' +
-          data.map(i => `<tr class="hover:bg-gray-50"><td class="border-t px-4 py-2">${i.employee_code || ''}</td><td class="border-t px-4 py-2">${i.name}</td><td class="border-t px-4 py-2">${i.role}</td></tr>`).join('') +
+          data.map(i => `<tr class="hover:bg-gray-50"><td class="border-t px-4 py-2">${i.employee_code || ''}</td><td class="border-t px-4 py-2">${i.name}</td><td class="border-t px-4 py-2">${i.position || ''}</td></tr>`).join('') +
         '</tbody>';
     }
     load();
@@ -65,6 +66,7 @@
 
     document.getElementById('add').onclick = () => {
       document.getElementById('name').value = '';
+      document.getElementById('position').value = '';
       document.getElementById('username').value = '';
       document.getElementById('password').value = '';
       document.getElementById('role').value = '';
@@ -77,15 +79,17 @@
 
     document.getElementById('save').onclick = async () => {
       const name = document.getElementById('name').value;
+      const position = document.getElementById('position').value;
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
       const role = document.getElementById('role').value;
       await fetch('/api/employees', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
-        body: JSON.stringify({ name, username, password, role })
+        body: JSON.stringify({ name, position, username, password, role })
       });
       document.getElementById('name').value = '';
+      document.getElementById('position').value = '';
       document.getElementById('username').value = '';
       document.getElementById('password').value = '';
       document.getElementById('role').value = '';
