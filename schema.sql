@@ -1,13 +1,20 @@
 CREATE TABLE IF NOT EXISTS employees (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(255) NOT NULL UNIQUE,
-  password_hash VARCHAR(255) NOT NULL,
-  role VARCHAR(50) NOT NULL,
+  name VARCHAR(255) NOT NULL,
   phone VARCHAR(20),
   email VARCHAR(255),
   address VARCHAR(255),
   thai_id VARCHAR(20),
   ssn VARCHAR(20)
+);
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  role VARCHAR(50) NOT NULL,
+  employee_id INT,
+  FOREIGN KEY (employee_id) REFERENCES employees(id)
 );
 
 CREATE TABLE IF NOT EXISTS inventory (
