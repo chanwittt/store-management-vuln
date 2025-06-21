@@ -29,6 +29,13 @@ This is a simple demo application consisting of a web frontend, a REST API and a
    ```
 5. Open `http://localhost:3000/login.html` in your browser to use the app.
 
+## Demo Credentials
+
+After loading the sample data you can sign in with the following accounts:
+
+- **Admin**: `admin` / `password`
+- **Cashier**: `cashier` / `password`
+
 ## Using Docker Compose
 
 You can also run the application using Docker Compose. This setup builds
