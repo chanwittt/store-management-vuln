@@ -15,10 +15,20 @@
   </nav>
   <div class="flex-1 p-6">
     <h1 class="text-xl mb-4">Promotions</h1>
+  <button id="add" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">Add</button>
   <table class="min-w-full mb-4 divide-y divide-gray-200 border border-gray-200 rounded" id="table"></table>
-  <input id="title" class="border p-2 mr-2" placeholder="Title" />
-  <input id="discount" class="border p-2 mr-2" placeholder="Discount" />
-  <button id="add" class="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
+
+  <div id="popup" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-4 rounded w-80">
+      <h2 class="text-lg mb-2">Promotion Details</h2>
+      <input id="title" class="border p-2 mb-2 w-full" placeholder="Title" />
+      <input id="discount" class="border p-2 mb-2 w-full" placeholder="Discount" />
+      <div class="flex justify-end space-x-2">
+        <button id="cancel" class="bg-gray-300 px-4 py-2 rounded">Cancel</button>
+        <button id="save" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+      </div>
+    </div>
+  </div>
   <script>
     const token = localStorage.getItem('token');
     if (!token) location.href = '/login.html';
@@ -45,7 +55,19 @@
     }
     load();
 
-    document.getElementById('add').onclick = async () => {
+    const popup = document.getElementById('popup');
+
+    document.getElementById('add').onclick = () => {
+      document.getElementById('title').value = '';
+      document.getElementById('discount').value = '';
+      popup.classList.remove('hidden');
+    };
+
+    document.getElementById('cancel').onclick = () => {
+      popup.classList.add('hidden');
+    };
+
+    document.getElementById('save').onclick = async () => {
       const title = document.getElementById('title').value;
       const discount = document.getElementById('discount').value;
       await fetch('/api/promotions', {
@@ -53,7 +75,10 @@
         headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
         body: JSON.stringify({ title, discount })
       });
+      document.getElementById('title').value = '';
+      document.getElementById('discount').value = '';
       load();
+      popup.classList.add('hidden');
     };
   </script>
   </div>
