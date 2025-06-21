@@ -39,6 +39,11 @@ After loading the sample data you can sign in with the following accounts:
 - **Cashier**: `cashier` / `password`
 
 
+## API Documentation
+
+The API endpoints are described in the `openapi.yaml` file using the
+[OpenAPI](https://www.openapis.org/) specification.
+
 ## Using Docker Compose
 
 You can also run the application using Docker Compose. This setup builds
