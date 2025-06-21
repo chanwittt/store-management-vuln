@@ -26,6 +26,14 @@
     async function load() {
       const res = await fetch('/api/customers', { headers: { Authorization: 'Bearer ' + token } });
       const data = await res.json();
+      if (!res.ok) {
+        alert(data.error || 'Failed to load customers');
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem('token');
+          return location.href = '/login.html';
+        }
+        return;
+      }
       const table = document.getElementById('table');
       table.innerHTML = '<tr><th>Name</th><th>Email</th></tr>' +
         data.map(i => `<tr><td>${i.name}</td><td>${i.email}</td></tr>`).join('');
