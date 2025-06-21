@@ -5,8 +5,8 @@ INSERT INTO employees (name, phone, email, address, thai_id, ssn) VALUES
 
 -- Sample data for users
 INSERT INTO users (username, password_hash, role, employee_id) VALUES
-('admin', '$2a$10$CwTycUXWue0Thq9StjUM0uJ8b0VkktZ1bgrEBu1z0ID8zlZzgDa3e', 'manager', 1),
-('cashier', '$2a$10$CwTycUXWue0Thq9StjUM0uJ8b0VkktZ1bgrEBu1z0ID8zlZzgDa3e', 'staff', 2);
+('admin', '$2a$10$8rRy8x.f2ivp/kvld8WKBOGKdcZFh/H185Q2ieu.XGSBgKkpiDB7i', 'manager', 1),
+('cashier', '$2a$10$mdD4xqVcraHoABhgziHpfuAMDSvGkoxMZj2WQmVHra6k2sC.coI7i', 'staff', 2);
 
 -- Sample data for inventory
 INSERT INTO inventory (name, quantity) VALUES
