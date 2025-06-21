@@ -96,9 +96,9 @@ app.get('/api/promotions', authenticate, async (req, res) => {
 });
 
 app.post('/api/promotions', authenticate, async (req, res) => {
-  const { title, discount } = req.body;
+  const { title, discount, discount_code } = req.body;
   try {
-    await pool.query('INSERT INTO promotions (title, discount) VALUES (?, ?)', [title, discount]);
+    await pool.query('INSERT INTO promotions (title, discount, discount_code) VALUES (?, ?, ?)', [title, discount, discount_code]);
     res.status(201).json({ message: 'Promotion created' });
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
