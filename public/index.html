@@ -4,16 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>Store Dashboard</title>
 </head>
-<body class="p-6">
-  <h1 class="text-2xl mb-4">Store Management</h1>
-  <nav class="space-x-4 mb-4">
+<body class="p-6 bg-gray-50 min-h-screen">
+  <h1 class="text-3xl font-semibold mb-6">Store Dashboard</h1>
+  <nav class="space-x-4 mb-6">
     <a href="inventory.html" class="text-blue-500">Inventory</a>
     <a href="promotions.html" class="text-blue-500">Promotions</a>
     <a href="employees.html" class="text-blue-500">Employees</a>
     <a href="customers.html" class="text-blue-500">Customers</a>
   </nav>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl mb-2">Monthly Sales</h2>
+      <canvas id="salesChart" class="w-full h-64"></canvas>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl mb-2">Top Products</h2>
+      <canvas id="topChart" class="w-full h-64"></canvas>
+    </div>
+    <div class="bg-white p-4 rounded shadow md:col-span-2">
+      <h2 class="text-xl mb-2">Current Stock</h2>
+      <table class="min-w-full" id="stockTable"></table>
+    </div>
+  </div>
   <button id="logout" class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
   <script>
     if (!localStorage.getItem('token')) window.location.href = '/login.html';
@@ -21,6 +36,33 @@
       localStorage.removeItem('token');
       window.location.href = '/login.html';
     });
+
+    // Mock data for dashboard
+    const salesLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+    const salesValues = [1200, 1900, 3000, 5000, 2300, 3500];
+    new Chart(document.getElementById('salesChart'), {
+      type: 'line',
+      data: { labels: salesLabels, datasets: [{ label: 'Sales ($)', data: salesValues, borderColor: 'rgb(59, 130, 246)', backgroundColor: 'rgba(59,130,246,0.2)' }] },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    const productLabels = ['Product A', 'Product B', 'Product C', 'Product D'];
+    const productValues = [40, 25, 20, 15];
+    new Chart(document.getElementById('topChart'), {
+      type: 'pie',
+      data: { labels: productLabels, datasets: [{ data: productValues, backgroundColor: ['#60a5fa','#34d399','#fbbf24','#f87171'] }] },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    const stockData = [
+      { name: 'Product A', qty: 120 },
+      { name: 'Product B', qty: 80 },
+      { name: 'Product C', qty: 45 },
+      { name: 'Product D', qty: 60 }
+    ];
+    const table = document.getElementById('stockTable');
+    table.innerHTML = '<tr><th class="text-left p-2">Item</th><th class="text-left p-2">Qty</th></tr>' +
+      stockData.map(i => `<tr><td class="border px-2 py-1">${i.name}</td><td class="border px-2 py-1">${i.qty}</td></tr>`).join('');
   </script>
 </body>
 </html>
