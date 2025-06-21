@@ -37,8 +37,6 @@ After loading the sample data you can sign in with the following accounts:
 - **Admin**: `admin` / `password`
 - **Cashier**: `cashier` / `password`
 
-Employee details are stored in the `employees` table while user accounts are
-kept in the separate `users` table.
 
 ## Using Docker Compose
 
