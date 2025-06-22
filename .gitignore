@@ -137,3 +137,7 @@ dist
 
 # macOS files
 .DS_Store
+
+# script files
+*.sh
+
